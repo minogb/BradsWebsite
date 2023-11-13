@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="969f462a-e4f1-4df0-9f1e-8ce73031ac89" ChangeDateTime="10/29/2023 01:49:45">
+    <Property Name="ElementName" Value="[dbo].[User].[IsEnabled]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Disabled" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="57212fe1-6bb2-43db-ba3f-ca4c7059345d" ChangeDateTime="10/29/2023 22:48:02">
+    <Property Name="ElementName" Value="[dbo].[PostReply].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PostReply]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ParentPost" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b261c74e-ba28-4eb0-b2fe-ed23956e56dc" ChangeDateTime="10/29/2023 23:00:09">
+    <Property Name="ElementName" Value="[dbo].[Post_Tag].[Post_ID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Post_Tag]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PostId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7d804a31-f0f7-44dd-9e8a-1016ab780aab" ChangeDateTime="10/29/2023 23:00:26">
+    <Property Name="ElementName" Value="[dbo].[Post_Reference].[PostId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Post_Reference]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PostID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9b85739f-8a67-4e06-914b-fad90d8c1faa" ChangeDateTime="10/29/2023 23:00:28">
+    <Property Name="ElementName" Value="[dbo].[Post_Tag].[PostId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Post_Tag]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PostID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="979902dc-75a6-458f-981a-1ad635c9e40a" ChangeDateTime="10/29/2023 23:35:19">
+    <Property Name="ElementName" Value="[dbo].[Post].[User]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Post]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserID" />
+  </Operation>
+</Operations>

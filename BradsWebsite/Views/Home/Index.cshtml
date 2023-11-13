@@ -1,0 +1,170 @@
+﻿@model BradsWebsite.Models.HomeDataModel
+@{
+    ViewData["Title"] = null;
+    
+}
+<div class="row">
+    <h4>Personal Projects</h4>
+    <div class="col">
+    <div class="card" style="">
+        <div class="card-body">
+            <h5 class="card-title">Social</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Social Media Project</h6>
+                <h6 class="card-subtitle mb-2 text-muted">C#, Asp.Net</h6>
+            <p class="card-text">A project of mine for creating a social media platform akin to twitter.</p>
+            <p class="card-text">Number of posts created: @Model.PostCount.</p>
+            <a class="card-link text-dark" asp-area="Post" asp-controller="Post" asp-action="Index">Participate</a>
+                <a class="card-link text-dark" asp-area="Post" asp-controller="Post" asp-action="Index" target="_blank">Github</a>
+        </div>
+    </div>
+    </div>
+    <div class="col">
+        <div class="card" style="">
+            <div class="card-body">
+                <h5 class="card-title">Quintessence</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Top Down MMO</h6>
+                <h6 class="card-subtitle mb-2 text-muted">C++, UE4</h6>
+                <p class="card-text">A top down mmo with point to click controls, currently being rerwitten.</p>
+                <a class="card-link text-dark" href="https://github.com/minogb/Quintessence" target="_blank">Github</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="">
+            <div class="card-body">
+                <h5 class="card-title">Work Tracker</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Time Card System</h6>
+                <h6 class="card-subtitle mb-2 text-muted">PHP, JQuery</h6>
+                <p class="card-text">Fed up with a workplace time card system, I designed my own to help me keep track of my work for entering into their system.</p>
+                <a class="card-link text-dark" href="https://github.com/minogb/Work_Tracker" target="_blank">Github</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+    </div>
+</div>
+<br />
+<div class="row">
+    <h4>Work Projects</h4>
+    <div class="col">
+        <div class="card" style="">
+            <div class="card-body">
+                <h5 class="card-title">Application Dashboard</h5>
+                <h6 class="card-subtitle mb-2 text-muted">C#, PlSQL</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Applications and User Authentication</h6>
+                <p class="card-text">An application responisble for managing user/application authentication. This application allows us to deploy/updates applications in real time as required.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="">
+            <div class="card-body">
+                <h5 class="card-title">Application Installer</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Self Contained Installer</h6>
+                <h6 class="card-subtitle mb-2 text-muted">C#</h6>
+                <p class="card-text">A self contained application that allows us to zip applications and deploy them, similar to msi or 7zip self extractor.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="">
+            <div class="card-body">
+                <h5 class="card-title">Autocad Tools</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Autocad C# API</h6>
+                <p class="card-text">By using the built in api system for autocad, I created a suite of tools to allow us to complete common CAD tasks faster. This is includes automated pannel layout, advanced PDF creation, and interagration with Excel.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="">
+            <div class="card-body">
+                <h5 class="card-title">Application Statistics</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Runtime statistics for applications and users</h6>
+                <h6 class="card-subtitle mb-2 text-muted">C#, PlSQL</h6>
+                <p class="card-text">To help categories the importance and return on investment for work orders, I created an internal system to track the usage of applications.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col">
+        <div class="card" style="">
+            <div class="card-body">
+                <h5 class="card-title">Simulated Systems</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Developer Test Tools</h6>
+                <h6 class="card-subtitle mb-2 text-muted">C#</h6>
+                <p class="card-text">To improve the workflow of development for applications, I created several internal tools to help simulate the input of devices used by operators.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="">
+            <div class="card-body">
+                <h5 class="card-title">DAQ</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Data acquisition system</h6>
+                <h6 class="card-subtitle mb-2 text-muted">C#, PlSQL</h6>
+                <p class="card-text">A self managing service for collecting data from a verity of eithernet devices, including plc's and scales.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="">
+            <div class="card-body">
+                <h5 class="card-title">Email Script</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Marketing Email Script</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Python</h6>
+                <p class="card-text">Created a basic email script to send marketing emails to an existing customer base. This script included the ability to verify emails and blacklist rejected emails for future campaigns.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="">
+            <div class="card-body">
+                <h5 class="card-title">Rasberi Pi Tracking</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Replacement system for tracking operator status</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Python, SQL, PlSQL</h6>
+                <p class="card-text">An existing system for tracking statuses of operators on the floor.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <h4>School Projects</h4>
+    <div class="col">
+        <div class="card" style="">
+            <div class="card-body">
+                <h5 class="card-title">Dawg Directory</h5>
+                <h6 class="card-subtitle mb-2 text-muted">School Class Map</h6>
+                <h6 class="card-subtitle mb-2 text-muted">PHP, JQuery, Vector Images</h6>
+                <p class="card-text">An interactive map system for the UW - Bothel campus.</p>
+                <a class="card-link text-dark" href="https://github.com/minogb/dawgdirectory" target="_blank">Github</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="">
+            <div class="card-body">
+                <h5 class="card-title">Just Chat</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Databaseless Encrypted Chat</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Andriod, Java</h6>
+                <p class="card-text">A 'secure' real time chat application for phones using a java server and https user authentication.</p>
+                <a class="card-link text-dark" href="https://github.com/minogb/Quintessence" target="_blank">Github</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="">
+            <div class="card-body">
+                <h5 class="card-title">Decompiler</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Assembly Code Project</h6>
+                <h6 class="card-subtitle mb-2 text-muted">68K</h6>
+                <p class="card-text">Decompiler for 68k Assembly language written in the easy68k compiler.</p>
+                <a class="card-link text-dark" href="https://github.com/minogb/CSS-422-Decompiler" target="_blank">Github</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+    </div>
+</div>

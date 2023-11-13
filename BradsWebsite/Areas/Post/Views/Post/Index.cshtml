@@ -1,0 +1,17 @@
+﻿@using BradsWebsite;
+@model BradsWebsite.Areas.Post.Models.PostPageModel
+@{
+    ViewData["Title"] = "Social";
+}
+
+@if(Model.Parent != null){
+    @Html.Partial("_Post",Model.Parent);
+}
+
+@Html.ValidationSummary()
+@if (User.Identity.IsAuthenticated)
+{
+    @Html.Partial("_Create",new BradsWebsite.Areas.Post.Models.CreatePostModel(){ReplyTo=Model.ParentID})
+}
+<br />
+@Html.RenderAction("_PostPage","Post",Model)

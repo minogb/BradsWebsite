@@ -1,0 +1,21 @@
+﻿@model BradsWebsite.Models.LoginModel
+
+@{
+    ViewData["Title"] = "Log In";
+    
+    ViewData["ReRoute"] = Url.ActionContext.HttpContext.Request.Query["ReturnUrl"];
+}
+<div class="row">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @using(Html.BeginForm()){
+        @Html.EditorForModel()
+        <br/>
+        <div class="form-group">
+            <input type="submit" value="Log In" class="btn btn-secondary" />
+            <a asp-area="" asp-controller="Account" asp-action="SignUp" asp-route-ReturnUrl="@ViewData["ReRoute"]">
+                <button type="button" value="Sign Up" class="btn btn-secondary">Sign Up</button>
+            </a>
+        </div>
+    }
+</div>

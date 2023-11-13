@@ -1,0 +1,7 @@
+﻿@model BradsWebsite.Areas.Post.Models.PostPageModel
+
+@foreach (BradsWebsite.Areas.Post.Models.PostModel post in ViewBag.Posts)
+{
+    @Html.Partial("_Post",post)
+    <br />
+}

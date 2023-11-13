@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Post_Link]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+    [PostID] INT NOT NULL, 
+    [Link] NVARCHAR(MAX) NOT NULL
+    FOREIGN KEY ([PostID]) REFERENCES [Post]([Id])
+)

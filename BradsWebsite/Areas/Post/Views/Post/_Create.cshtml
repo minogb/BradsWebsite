@@ -1,0 +1,39 @@
+﻿@model BradsWebsite.Areas.Post.Models.CreatePostModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    if (Model.Links == null)
+        Model.Links = new List<BradsWebsite.Areas.Post.Models.PostLinkModel>();
+    if(ViewBag.ReturnUrl == null)
+        ViewBag.ReturnUrl = Context.Request.Path;
+}
+<label>New Post</label>
+<form asp-action="Create" asp-asp-controller="Post" method="post">
+    <input id='ReturnUrl' type='hidden' name='ReturnUrl' value='@ViewBag.ReturnUrl'>
+    <input id='ReplyTo' type='hidden' name='ReplyTo' value='@Model.ReplyTo'>
+    @Html.AntiForgeryToken()
+    @Html.LabelFor(m=>m.Message)
+    <br />
+    <textarea class="form-control" asp-for="@Model.Message">@Model.Message</textarea>
+    <table id="tbLinks" class="row">
+        <thead>
+            <tr>
+                <th>
+                    <button type="button" id="btnAddNewLink" class="btn btn-secondary form-control">Add Link</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="LinkTable" id="linkBody">
+            @for(int i = 0; i < Model.Links.Count; i++)
+            {
+                <tr><td>
+                        <input class="form-control" asp-for="@Model.Links[i].Url" id="Model.Links[${i}].Url" type="text" placeholder="Link URL here" />
+                </td></tr>
+            }
+        </tbody>
+    </table>
+    <input type="submit" value="Create Post" class="btn btn-primary" />
+</form>
+@section Scripts {
+}

@@ -1,0 +1,31 @@
+﻿@model BradsWebsite.Models.SignUpModel
+
+@{
+    ViewData["Title"] = "Sign Up";
+    ViewData["ReRoute"] = Url.ActionContext.HttpContext.Request.Query["ReturnUrl"];
+}
+<div class="alert-warning">This website is <b>not responsible</b> for protecting user information, do not use any information on this site that can be considered compromising.</div>
+<div class="alert-warning">We do store emails in an accessible format.</div>
+<div class="alert-warning">We store credential information in non-accessible encrypted format.</div>
+<div class="alert-warning"><b>Do not use this site for unlawful means.</b></div>
+<div class="row">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @using (Html.BeginForm())
+    {
+        @Html.EditorForModel()
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Sign Up" class="btn btn-secondary" />
+        </div>
+    }
+</div>
+<br />
+<div class="row">
+    <div>
+    Have account already?
+    </div>
+    <a asp-area="" asp-controller="Account" asp-action="Login" asp-route-ReturnUrl="@ViewData["ReRoute"]">
+        <button type="button" value="Sign Up" class="btn btn-secondary">Login</button>
+    </a>
+</div>
