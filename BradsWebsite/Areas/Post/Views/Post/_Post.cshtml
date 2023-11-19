@@ -1,12 +1,14 @@
 ﻿@using System.Security.Claims;
 @model BradsWebsite.Areas.Post.Models.PostModel
-
+@{
+    var pId = Model.ParentPost.HasValue ? Model.ParentPost.Value : Model.Id;
+}
 <div class="row">
     <div class="card">
         <div class="card-body">
             @if (User.Identity.IsAuthenticated && User.FindFirst(ClaimTypes.NameIdentifier).Value == Model.User.Id.ToString())
             {
-                <form id="selectLanguage" asp-controller="Post" asp-action="Delete" asp-route-returnUrl="@Context.Request.Path" method="post" role="form">
+                <form  asp-controller="Post" asp-action="Delete" asp-route-returnUrl="@Context.Request.Path" method="Post" role="form">
                     <div>
                         <button style="float:right" class="btn" type="submit" name="ID" value="@Model.Id">
                             <i class="bi bi-x"></i>
@@ -14,9 +16,27 @@
                     </div>
                 </form>
             }
-            <h4 class="card-title">@Model.User.UserName</h4>
+            <form asp-controller="Post" asp-action="" asp-route-Mention="@Model.User.UserName" method="get" role="form">
+                <button class="btn" style="margin:0px; padding:0px;" type="submit" name="Mention" value="@Model.User.UserName">
+                    <h4 class="card-title">@Model.User.UserName</h4>
+                </button>
+            </form>
+            @if (Model.ParentPost.HasValue)
+            {
+                <p class="text-muted card-subtitle" style="font-size:12px">Replying to a post...</p>
+            }
             <p class="text-muted card-subtitle" style="font-size:12px">@Model.Date</p>
-            <pre class="card-text text-wrap">@Model.Message</pre>
+
+            <div style="float:left">
+                <form asp-controller="Post" asp-action="" asp-route-ParentID="@pId" method="get" role="form">
+                    <button class="btn" style="margin:0px; padding:0px;" type="submit" name="ParentID" value="@pId">
+                        <i class="bi bi-info-circle"></i>
+                    </button>
+                </form>
+            </div>
+            <pre class="card-text text-wrap text-lg-start">
+                @Model.Message
+            </pre>
 
             <h6 class="card-subtitle mb-2 text-muted" style="float:right">Replies: @Model.Replies</h6>
             @foreach(var link in Model.Links){

@@ -98,6 +98,17 @@ namespace BradsWebsite.Controllers
             ModelState.Remove(nameof(ReturnUrl));
             if (!ModelState.IsValid)
                 return View(form);
+            var filter = new ProfanityFilter.ProfanityFilter();
+            if(filter.ContainsProfanity(form.Name))
+            {
+                ModelState.AddModelError("summary", "User name cannot contain profanity.");
+                return View(form);
+            }
+            if (filter.ContainsProfanity(form.Email))
+            {
+                ModelState.AddModelError("summary", "Email cannot contain profanity.");
+                return View(form);
+            }
             try
             {
                 //authenticate

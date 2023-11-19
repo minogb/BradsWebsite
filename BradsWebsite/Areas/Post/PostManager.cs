@@ -91,8 +91,14 @@ namespace BradsWebsite.Areas.Post
                 {
                     con.Open();
                     cmd.Parameters.AddWithValue("From", DateTime.Now);
-                    cmd.Parameters.AddWithValue("Tag", null);
-                    cmd.Parameters.AddWithValue("Mention", null);//todo other stuff here
+                    string value = page.Tag;
+                    if(value != null)
+                        value = value.Trim();
+                    cmd.Parameters.AddWithValue("Tag", value);
+                    value = page.Mention;
+                    if (value != null)
+                        value = value.Trim();
+                    cmd.Parameters.AddWithValue("Mention", value);//todo other stuff here
                     if (page.ParentID != null)
                     {
                         cmd.Parameters.AddWithValue("Parent", page.ParentID);
@@ -104,11 +110,13 @@ namespace BradsWebsite.Areas.Post
                             var post = new PostModel();
                             post.User = new PostUserModel();
                             post.User.Id = reader.GetInt32(0);
-                            post.User.UserName = reader.GetString(1);
+                            post.User.UserName = reader.GetString(1).Trim();
                             post.Id = reader.GetInt32(2);
-                            post.Message = filter.CensorString(reader.GetString(3));
+                            post.Message = filter.CensorString(reader.GetString(3)).Trim();
                             post.Date = reader.GetDateTime(4);
                             post.Replies = reader.GetInt32(5);
+                            if (!reader.IsDBNull(6))
+                                post.ParentPost = reader.GetInt32(6);
                             if (post.Id == page.ParentID)
                             {
                                 page.Parent = post;
