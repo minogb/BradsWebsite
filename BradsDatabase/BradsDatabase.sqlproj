@@ -56,22 +56,23 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Post" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="User.sql" />
     <Build Include="GetUser.sql" />
     <Build Include="CreateUser.sql" />
-    <Build Include="Post.sql" />
-    <Build Include="Post_Link.sql" />
-    <Build Include="Post_Reply.sql" />
-    <Build Include="Post_Tag.sql" />
-    <Build Include="Post_Reference.sql" />
-    <Build Include="CreatePost.sql" />
-    <Build Include="PostLinkDataType.sql" />
-    <Build Include="GetPostPage.sql" />
-    <Build Include="DeletePost.sql" />
-    <Build Include="GetPostLinks.sql" />
-    <Build Include="PostSchema.sql" />
+    <Build Include="Post\CreatePost.sql" />
+    <Build Include="Post\DeletePost.sql" />
+    <Build Include="Post\GetPostLinks.sql" />
+    <Build Include="Post\GetPostPage.sql" />
+    <Build Include="Post\Post.sql" />
+    <Build Include="Post\Post_Link.sql" />
+    <Build Include="Post\Post_Reference.sql" />
+    <Build Include="Post\Post_Reply.sql" />
+    <Build Include="Post\Post_Tag.sql" />
+    <Build Include="Post\PostLinkDataType.sql" />
+    <Build Include="Post\PostSchema.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BradsDatabase.refactorlog" />
