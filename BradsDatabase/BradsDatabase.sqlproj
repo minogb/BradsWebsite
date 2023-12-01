@@ -71,6 +71,7 @@
     <Build Include="GetPostPage.sql" />
     <Build Include="DeletePost.sql" />
     <Build Include="GetPostLinks.sql" />
+    <Build Include="PostSchema.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BradsDatabase.refactorlog" />

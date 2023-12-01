@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[CreatePost]
+﻿CREATE PROCEDURE [Post].[CreatePost]
 	@UserID int,
 	@Message NVARCHAR(MAX),
 	@Links PostLinkDataType READONLY,
@@ -29,7 +29,7 @@ AS
 	BEGIN
 		SET @Other = NULL;
 		IF @Word LIKE '@%'
-			SELECT @Other = [Id] FROM [User] WHERE UPPER([User].Name) = UPPER(RIGHT(@Word,LEN(@Word)-1));
+			SELECT @Other = [Id] FROM [dbo].[User] WHERE UPPER([User].Name) = UPPER(RIGHT(@Word,LEN(@Word)-1));
 			IF @Other IS NOT NULL
 				INSERT INTO [Post_Reference] ([PostID],[UserID]) VALUES(@PostId, @Other);
 		IF @Word LIKE '#%'

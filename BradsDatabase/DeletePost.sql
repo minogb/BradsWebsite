@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[DeletePost]
+﻿CREATE PROCEDURE [Post].[DeletePost]
 	@PostID int = 0,
 	@UserID int
 AS

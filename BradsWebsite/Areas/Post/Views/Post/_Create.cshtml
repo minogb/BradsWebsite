@@ -15,7 +15,9 @@
     @Html.AntiForgeryToken()
     @Html.LabelFor(m=>m.Message)
     <br />
-    <textarea class="form-control" asp-for="@Model.Message">@Model.Message</textarea>
+    <textarea class="form-control" asp-for="@Model.Message">
+        @Model.Message
+    </textarea>
     <table id="tbLinks" class="row">
         <thead>
             <tr>

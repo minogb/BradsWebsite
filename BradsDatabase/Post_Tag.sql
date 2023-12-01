@@ -1,7 +1,7 @@
-﻿CREATE TABLE [dbo].[Post_Tag]
+﻿CREATE TABLE [Post].[Post_Tag]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [PostID] INT NOT NULL, 
     [Tag] NVARCHAR(MAX) NOT NULL
-    FOREIGN KEY ([PostID]) REFERENCES [Post]([Id])
+    FOREIGN KEY ([PostID]) REFERENCES [Post].[Post]([Id])
 )

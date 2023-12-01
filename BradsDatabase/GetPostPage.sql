@@ -1,7 +1,7 @@
-﻿CREATE PROCEDURE [dbo].[GetPostPage]
+﻿CREATE PROCEDURE [Post].[GetPostPage]
 	@From DateTime,
-	@Tag NVARCHAR = null,
-	@Mention NVARCHAR = null,
+	@Tag NVARCHAR(MAX) = null,
+	@Mention NVARCHAR(MAX) = null,
 	@Parent int = null
 AS
 --TODO: Mentions
@@ -18,11 +18,11 @@ AS
 		LEFT JOIN [User] ON [User].Id = [Post].UserID
 	WHERE
 		--TODO [Post].[Date] < @From and @@ROWCOUNT < 20 and
-		(@Tag IS NULL OR UPPER(@Tag) IN(SELECT UPPER([Post_Tag].Tag) FROM [Post_Tag] WHERE Tag = @Tag))
+		(@Tag IS NULL OR [Post].Id IN(SELECT [Post_Tag].PostID FROM [Post_Tag] WHERE UPPER([Post_Tag].Tag) = UPPER(@Tag)))
 		AND (@Parent IS null OR [Post].Id = @Parent OR [Post].Id IN (SELECT [Post_Reply].ReplyPost FROM [Post_Reply] WHERE [Post_Reply].ParentPost = @Parent))
 		AND (@Mention IS null
-				OR [Post].Id IN (SELECT [Post_Reference].PostID FROM [Post_Reference] WHERE [Post_Reference].UserID IN (SELECT [Id] FROM [User] WHERE UPPER([User].Name) = UPPER(@Mention))) 
-				OR UPPER(@Mention) IN (SELECT UPPER([Name]) FROM [User] WHERE [User].Id = [Post].UserID))
+				OR [Post].Id IN (SELECT [Post_Reference].PostID FROM [Post_Reference] WHERE [Post_Reference].UserID IN (SELECT [User].Id FROM [dbo].[User] WHERE UPPER([User].Name) = UPPER(@Mention))) 
+				OR UPPER(@Mention) IN (SELECT UPPER([User].Name) FROM [dbo].[User] WHERE [User].Id = [Post].UserID))
 		AND [User].Locked IS NULL AND [User].Disabled IS NULL
 		AND [Post].Deleted IS NULL
 	ORDER BY [Post].Date DESC;

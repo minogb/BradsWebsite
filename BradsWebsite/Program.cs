@@ -60,6 +60,12 @@ app.UseEndpoints(endpoints =>
         defaults: new { controller = "Post", action = "Index" },
         pattern: "Post/{action=Index}/{id?}"
     );
+    endpoints.MapAreaControllerRoute(
+        name: "Pyramid",
+    areaName: "Pyramid",
+        defaults: new { controller = "Pyramid", action = "Index" },
+        pattern: "Pyramid/{action=Index}/{id?}"
+    );
     endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}"

@@ -1,1 +1,1 @@
-﻿CREATE TYPE PostLinkDataType AS TABLE (RowID int not null primary key, Link nvarchar(MAX) NOT NULL);
+﻿CREATE TYPE [Post].PostLinkDataType AS TABLE (RowID int not null primary key, Link nvarchar(MAX) NOT NULL);

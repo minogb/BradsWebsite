@@ -23,7 +23,7 @@ namespace BradsWebsite.Areas.Post
         {
             using (var con = new SqlConnection(Configuration.GetConnectionString("Primary")))
             {
-                using (SqlCommand cmd = new SqlCommand("CreatePost", con))
+                using (SqlCommand cmd = new SqlCommand("[Post].CreatePost", con))
                 {
                     con.Open();
                     cmd.Parameters.AddWithValue("UserID", context.User.FindFirstValue(ClaimTypes.NameIdentifier));
@@ -64,7 +64,7 @@ namespace BradsWebsite.Areas.Post
             var retVar = new List<string>();
             using (var con = new SqlConnection(Configuration.GetConnectionString("Primary")))
             {
-                using (SqlCommand cmd = new SqlCommand("GetPostLinks", con))
+                using (SqlCommand cmd = new SqlCommand("[Post].GetPostLinks", con))
                 {
                     con.Open();
                     cmd.Parameters.AddWithValue("PostId", postId);
@@ -87,7 +87,7 @@ namespace BradsWebsite.Areas.Post
             var retVar = new List<PostModel>();
             using (var con = new SqlConnection(Configuration.GetConnectionString("Primary")))
             {
-                using (SqlCommand cmd = new SqlCommand("GetPostPage", con))
+                using (SqlCommand cmd = new SqlCommand("[Post].GetPostPage", con))
                 {
                     con.Open();
                     cmd.Parameters.AddWithValue("From", DateTime.Now);
@@ -136,7 +136,7 @@ namespace BradsWebsite.Areas.Post
         {
             using (var con = new SqlConnection(Configuration.GetConnectionString("Primary")))
             {
-                using (SqlCommand cmd = new SqlCommand("DeletePost", con))
+                using (SqlCommand cmd = new SqlCommand("[Post].DeletePost", con))
                 {
                     con.Open();
                     cmd.Parameters.AddWithValue("UserID", context.User.FindFirstValue(ClaimTypes.NameIdentifier));
