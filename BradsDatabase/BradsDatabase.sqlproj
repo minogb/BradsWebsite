@@ -57,6 +57,7 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Post" />
+    <Folder Include="Pyramid" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="User.sql" />
@@ -73,6 +74,7 @@
     <Build Include="Post\Post_Tag.sql" />
     <Build Include="Post\PostLinkDataType.sql" />
     <Build Include="Post\PostSchema.sql" />
+    <Build Include="Pyramid\PyramidSchema.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BradsDatabase.refactorlog" />
