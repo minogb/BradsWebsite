@@ -31,13 +31,18 @@ namespace BradsWebsite.Controllers
         {
             if (string.IsNullOrEmpty(id))
                 return RedirectToAction("Index");
+            string cat = id;
+            cat = id.ToLower();
+            cat = char.ToUpper(id[0])+ cat.Substring(1);
+            if(cat != id)
+                return RedirectToAction("Category", new {id = cat});
             return View(new DailyMessageCategoryModel(id,Configuration));
         }
         [Authorize(Roles = "Daily")]
         [HttpPost]
-        public IActionResult Delete(string id)
+        public IActionResult Delete(int id)
         {
-            //TODO delte
+            DailyMessageModel.Delete(id,Configuration);
             return RedirectToAction("Index");
         }
         [Authorize(Roles = "Daily")]

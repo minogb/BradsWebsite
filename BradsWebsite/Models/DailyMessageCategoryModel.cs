@@ -9,7 +9,8 @@ namespace BradsWebsite.Models
         public List<DailyMessageModel> Messages { get; set; }
         public DailyMessageCategoryModel(string category, IConfiguration configuration)
         {
-            this.Category = category;
+            Category = category;
+            Category = char.ToUpper(Category[0]) + Category.Substring(1).ToLower();
             Messages = new List<DailyMessageModel>();
             using (var con = new SqlConnection(configuration.GetConnectionString("Primary")))
             {

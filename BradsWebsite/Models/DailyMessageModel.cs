@@ -17,6 +17,19 @@ namespace BradsWebsite.Models
         public DateTime? Start {  get; set; }
         [DataType(DataType.Date)]
         public DateTime? End { get; set; }
+        public static void Delete(int id, IConfiguration configuration)
+        {
+            using (var con = new SqlConnection(configuration.GetConnectionString("Primary")))
+            {
+                using (SqlCommand cmd = new SqlCommand("DeleteDailyMessage", con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("Id", id);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    var reader = cmd.ExecuteNonQuery();
+                }
+            }
+        }
         public DailyMessageModel() {
         }
         public DailyMessageModel(int id, IConfiguration configuration)
@@ -40,6 +53,7 @@ namespace BradsWebsite.Models
                             if (reader[3] != null && !reader.IsDBNull(2))
                                 End = GetDateOnly(reader.GetString(3));
                             Category = reader.GetString(4);
+                            Category = char.ToUpper(Category[0]) + Category.Substring(1).ToLower();
                         }
                     }
                 }
@@ -47,7 +61,8 @@ namespace BradsWebsite.Models
         }
         public DailyMessageModel(string category, IConfiguration configuration)
         {
-            this.Category = category;
+            Category = category;
+            Category = char.ToUpper(Category[0]) + Category.Substring(1).ToLower();
             using (var con = new SqlConnection(configuration.GetConnectionString("Primary")))
             {
                 using (SqlCommand cmd = new SqlCommand("GetDailyMessage", con))
