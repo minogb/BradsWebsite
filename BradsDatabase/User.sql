@@ -6,7 +6,7 @@
     [Secrete] NCHAR(255) NOT NULL, 
     [Locked] DATETIME NULL, 
     [Disabled] DATETIME NULL, 
-    [AccountType] NCHAR(10) NOT NULL, 
+    [AccountType] NVARCHAR(10) NOT NULL, 
     [Confirmed] DATETIME NULL, 
     [Created] DATETIME NOT NULL default GETDATE()
     CONSTRAINT UserEmail UNIQUE (Email)

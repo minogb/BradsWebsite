@@ -52,11 +52,11 @@ namespace BradsWebsite.Authentication
                     {
                         if (reader.Read())
                         {
-                            user.Id = reader["Id"].ToString();
-                            user.Name = reader["Name"].ToString();
+                            user.Id = reader["Id"].ToString().Trim();
+                            user.Name = reader["Name"].ToString().Trim();
                             user.Locked = reader["Locked"] as DateTime?;
                             user.Disabled = reader["Disabled"] as DateTime?;
-                            user.AccountType = reader["AccountType"].ToString();
+                            user.AccountType = reader["AccountType"].ToString().Trim();
                             user.Confirmed = reader["Disabled"] as DateTime?;
                         }
                         else
@@ -76,6 +76,11 @@ namespace BradsWebsite.Authentication
                 httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal).Wait();
                 return true;
             }
+        }
+        public List<string> GetUserRoles(AuthUser user)
+        {
+            var roles = new List<string>();//todo\
+            return roles;
         }
 
         public async void SignOut(HttpContext httpContext)
@@ -99,7 +104,9 @@ namespace BradsWebsite.Authentication
             List<Claim> claims = new List<Claim>();
 
             claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
-            claims.Add(new Claim(ClaimTypes.Role, user.AccountType));//todo add roles here
+            claims.Add(new Claim(ClaimTypes.Role, user.AccountType));
+            foreach (var role in GetUserRoles(user))
+                claims.Add(new Claim(ClaimTypes.Role, role));
             return claims;
         }
     }

@@ -5,6 +5,7 @@ using BradsWebsite.Areas.Post;
 using BradsWebsite.Authentication;
 using Microsoft.Data.SqlClient;
 using System.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +19,8 @@ options =>
 {
     options.LoginPath = "/Account/Login";
     options.LogoutPath = "/Account/Logout";
+    options.AccessDeniedPath = "/Account/AccessDenied";
 });
-
 builder.Services.AddMvc();
 /*todo
 builder.Services.AddTransient(

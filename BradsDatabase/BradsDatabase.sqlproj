@@ -75,6 +75,9 @@
     <Build Include="Post\PostLinkDataType.sql" />
     <Build Include="Post\PostSchema.sql" />
     <Build Include="Pyramid\PyramidSchema.sql" />
+    <Build Include="DailyMessage.sql" />
+    <Build Include="GetDailyMessage.sql" />
+    <Build Include="CreateDailyMessage.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BradsDatabase.refactorlog" />

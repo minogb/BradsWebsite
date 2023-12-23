@@ -1,0 +1,120 @@
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.DiaSymReader;
+using System.ComponentModel.DataAnnotations;
+using System.Configuration;
+using System.Data;
+using System.Reflection.Metadata;
+
+namespace BradsWebsite.Models
+{
+    public class DailyMessageModel
+    {
+        public int? Id { get; set; }
+        [Required]
+        public string Message { get; set; }
+        public string? Category { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? Start {  get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? End { get; set; }
+        public DailyMessageModel() {
+        }
+        public DailyMessageModel(int id, IConfiguration configuration)
+        {
+            Id = id;
+            using (var con = new SqlConnection(configuration.GetConnectionString("Primary")))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetDailyMessage", con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("id", Id);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Id = reader.GetInt32(0);
+                            Message = reader.GetString(1);
+                            if (reader[2] != null && !reader.IsDBNull(2))
+                                Start = GetDateOnly(reader.GetString(2));
+                            if (reader[3] != null && !reader.IsDBNull(2))
+                                End = GetDateOnly(reader.GetString(3));
+                            Category = reader.GetString(4);
+                        }
+                    }
+                }
+            }
+        }
+        public DailyMessageModel(string category, IConfiguration configuration)
+        {
+            this.Category = category;
+            using (var con = new SqlConnection(configuration.GetConnectionString("Primary")))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetDailyMessage", con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("Category", category);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Id = reader.GetInt32(0);
+                            Message = reader.GetString(1);
+                            if (reader[2] != null && !reader.IsDBNull(2))
+                                Start = GetDateOnly(reader.GetString(2));
+                            if (reader[3] != null && !reader.IsDBNull(3))
+                                End = GetDateOnly(reader.GetString(3));
+                        }
+                    }
+                }
+            }
+        }
+        public bool SaveNew(IConfiguration configuration)
+        {
+            using (var con = new SqlConnection(configuration.GetConnectionString("Primary")))
+            {
+                using (SqlCommand cmd = new SqlCommand("CreateDailyMessage", con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("Message", Message);
+                    cmd.Parameters.AddWithValue("Category", Category);
+                    cmd.Parameters.AddWithValue("Start", Start);
+                    cmd.Parameters.AddWithValue("End", End);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Id = (int)reader.GetDecimal(0);
+                        }
+                    }
+                }
+            }
+            return Id > 0;
+        }
+        private DateTime? GetDateOnly(string value)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    var se = value.Split("-");
+                    if (se.Length > 1)
+                    {
+                        int m, d;
+                        if (int.TryParse(se[0], out m) && int.TryParse(se[1], out d))
+                        {
+                            return new DateTime(2024, m, d);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return null;
+        }
+    }
+}

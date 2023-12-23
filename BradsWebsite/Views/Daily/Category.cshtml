@@ -1,0 +1,19 @@
+﻿@model BradsWebsite.Models.DailyMessageCategoryModel
+
+@{
+    ViewData["Title"] = Model.Category;
+}
+@foreach(var mod in Model.Messages)
+{
+    <div class="card" style="">
+        <div class="card-body">
+            @if (@mod.Start.HasValue)
+            {
+                <p class="text-muted card-subtitle" style="font-size:12px">@mod.Start - @mod.End</p>
+            }
+            <pre>@mod.Message</pre>
+            <a class="card-link text-dark"  asp-controller="Daily" asp-action="View" asp-route-id="@mod.Id" >Details</a>
+        </div>
+    </div>
+    <br />
+}

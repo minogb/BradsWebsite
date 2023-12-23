@@ -17,6 +17,11 @@ namespace BradsWebsite.Controllers
             _userManager = userManager;
         }
         [AllowAnonymous]
+        public IActionResult AccessDenied(string ReturnUrl)
+        {
+            return View();
+        }
+        [AllowAnonymous]
         public IActionResult LogIn(string ReturnUrl)
         {
             if (User.Identity.IsAuthenticated)
