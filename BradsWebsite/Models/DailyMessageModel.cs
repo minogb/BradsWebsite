@@ -94,8 +94,11 @@ namespace BradsWebsite.Models
                     con.Open();
                     cmd.Parameters.AddWithValue("Message", Message);
                     cmd.Parameters.AddWithValue("Category", Category);
-                    cmd.Parameters.AddWithValue("Start", Start);
-                    cmd.Parameters.AddWithValue("End", End);
+                    if (Start.HasValue && End.HasValue)
+                    {
+                        cmd.Parameters.AddWithValue("Start", Start.Value.ToString("MM-dd-yyyy"));
+                        cmd.Parameters.AddWithValue("End", End.Value.ToString("MM-dd-yyyy"));
+                    }
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (var reader = cmd.ExecuteReader())
                     {
