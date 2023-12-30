@@ -23,6 +23,10 @@
         {
             <p class="text-muted card-subtitle" style="font-size:12px">@Model.Start - @Model.End</p>
         }
-        <pre>@Model.Message</pre>
+        <pre style="white-space: pre-wrap">@Model.Message</pre>
+        @if (User.Identity.IsAuthenticated && User.FindFirst(ClaimTypes.Role).Value == "Daily")
+        {
+            <a class="card-link text-dark" asp-controller="Daily" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        }
     </div>
 </div>

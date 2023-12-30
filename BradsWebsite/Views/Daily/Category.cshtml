@@ -1,4 +1,5 @@
-﻿@model BradsWebsite.Models.DailyMessageCategoryModel
+﻿@using System.Security.Claims;
+@model BradsWebsite.Models.DailyMessageCategoryModel
 
 @{
     ViewData["Title"] = Model.Category;
@@ -11,8 +12,12 @@
             {
                 <p class="text-muted card-subtitle" style="font-size:12px">@mod.Start - @mod.End</p>
             }
-            <pre>@mod.Message</pre>
-            <a class="card-link text-dark"  asp-controller="Daily" asp-action="View" asp-route-id="@mod.Id" >Details</a>
+            <pre style="white-space: pre-wrap">@mod.Message</pre>
+            <a class="card-link text-dark" asp-controller="Daily" asp-action="View" asp-route-id="@mod.Id">Details</a>
+            @if (User.Identity.IsAuthenticated && User.FindFirst(ClaimTypes.Role).Value == "Daily")
+            {
+                <a class="card-link text-dark" asp-controller="Daily" asp-action="Edit" asp-route-id="@mod.Id">Edit</a>
+            }
         </div>
     </div>
     <br />

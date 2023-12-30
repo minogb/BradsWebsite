@@ -34,13 +34,12 @@ namespace BradsWebsite.Models
         }
         public DailyMessageModel(int id, IConfiguration configuration)
         {
-            Id = id;
             using (var con = new SqlConnection(configuration.GetConnectionString("Primary")))
             {
                 using (SqlCommand cmd = new SqlCommand("GetDailyMessage", con))
                 {
                     con.Open();
-                    cmd.Parameters.AddWithValue("id", Id);
+                    cmd.Parameters.AddWithValue("id", id);
                     cmd.CommandType = CommandType.StoredProcedure;
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -84,6 +83,27 @@ namespace BradsWebsite.Models
                     }
                 }
             }
+        }
+        public bool SaveEdit(IConfiguration configuration)
+        {
+            using (var con = new SqlConnection(configuration.GetConnectionString("Primary")))
+            {
+                using (SqlCommand cmd = new SqlCommand("EditDailyMessage", con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("Id", Id);
+                    cmd.Parameters.AddWithValue("Message", Message);
+                    cmd.Parameters.AddWithValue("Category", Category);
+                    if (Start.HasValue && End.HasValue)
+                    {
+                        cmd.Parameters.AddWithValue("Start", Start.Value.ToString("MM-dd-yyyy"));
+                        cmd.Parameters.AddWithValue("End", End.Value.ToString("MM-dd-yyyy"));
+                    }
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            return Id > 0;
         }
         public bool SaveNew(IConfiguration configuration)
         {

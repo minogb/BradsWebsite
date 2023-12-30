@@ -34,9 +34,7 @@
                     </button>
                 </form>
             </div>
-            <pre class="card-text text-wrap text-lg-start">
-                @Model.Message
-            </pre>
+            <pre class="card-text text-lg-start" style="white-space: pre-wrap">@Model.Message</pre>
 
             <h6 class="card-subtitle mb-2 text-muted" style="float:right">Replies: @Model.Replies</h6>
             @foreach(var link in Model.Links){

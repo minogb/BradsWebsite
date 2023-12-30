@@ -21,7 +21,10 @@ namespace BradsWebsite.Controllers
         {
             if(id == 0)
                 return RedirectToAction("Index");
-            return View(new DailyMessageModel(id, Configuration));
+            var model = new DailyMessageModel(id, Configuration);
+            if (model.Id != id)
+                return RedirectToAction("Index");
+            return View(model);
         }
         public PartialViewResult _Details(DailyMessageModel model)
         {
@@ -44,6 +47,30 @@ namespace BradsWebsite.Controllers
         {
             DailyMessageModel.Delete(id,Configuration);
             return RedirectToAction("Index");
+        }
+        [Authorize(Roles = "Daily")]
+        public IActionResult Edit(int id)
+        {
+            if (id == 0)
+                return RedirectToAction("Index");
+            var model = new DailyMessageModel(id, Configuration);
+            if (model.Id != id)
+                return RedirectToAction("Index");
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Daily")]
+        public IActionResult Edit(DailyMessageModel dailyMessage)
+        {
+            if (dailyMessage == null)
+                return RedirectToAction("Index");
+            if (!ModelState.IsValid)
+                return View(dailyMessage);
+            if (dailyMessage.SaveEdit(Configuration))
+                return RedirectToAction("View", dailyMessage.Id);
+            ModelState.AddModelError("summary", "Could not save new daily message.");
+            return View(dailyMessage);
         }
         [Authorize(Roles = "Daily")]
         public IActionResult New()

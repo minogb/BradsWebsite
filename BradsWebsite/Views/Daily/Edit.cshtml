@@ -1,0 +1,13 @@
+﻿@model BradsWebsite.Models.DailyMessageModel
+
+@{
+    ViewData["Title"] = "Edit Daily Message";
+}
+
+@Html.Partial("_DMEditor",Model)
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
