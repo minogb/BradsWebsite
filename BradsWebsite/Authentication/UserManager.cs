@@ -4,6 +4,7 @@ using System.Data;
 using System.Security.Claims;
 using Microsoft.Data.SqlClient;
 using System.Configuration;
+using Microsoft.AspNetCore.Http;
 
 namespace BradsWebsite.Authentication
 {
@@ -80,6 +81,22 @@ namespace BradsWebsite.Authentication
         public List<string> GetUserRoles(AuthUser user)
         {
             var roles = new List<string>();//todo\
+
+            using (var con = new SqlConnection(Configuration.GetConnectionString("Primary")))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetUserRoles", con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("UserId", user.Id);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                    {
+                        while(reader.Read()) { 
+                            roles.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
             return roles;
         }
 
@@ -102,9 +119,6 @@ namespace BradsWebsite.Authentication
         private IEnumerable<Claim> GetUserRoleClaims(AuthUser user)
         {
             List<Claim> claims = new List<Claim>();
-
-            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
-            claims.Add(new Claim(ClaimTypes.Role, user.AccountType));
             foreach (var role in GetUserRoles(user))
                 claims.Add(new Claim(ClaimTypes.Role, role));
             return claims;

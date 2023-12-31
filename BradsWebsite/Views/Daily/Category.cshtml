@@ -14,7 +14,7 @@
             }
             <pre style="white-space: pre-wrap">@mod.Message</pre>
             <a class="card-link text-dark" asp-controller="Daily" asp-action="View" asp-route-id="@mod.Id">Details</a>
-            @if (User.Identity.IsAuthenticated && User.FindFirst(ClaimTypes.Role).Value == "Daily")
+            @if (User.Identity.IsAuthenticated && User.FindFirst(ClaimTypes.Role).Value == "DAILY_MOD")
             {
                 <a class="card-link text-dark" asp-controller="Daily" asp-action="Edit" asp-route-id="@mod.Id">Edit</a>
             }

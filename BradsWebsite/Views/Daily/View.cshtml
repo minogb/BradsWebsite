@@ -7,7 +7,7 @@
 <div class="card" style="">
     <div class="card-header">
         <a class="card-link text-dark" asp-controller="Daily" asp-action="Category" asp-route-id="@Model.Category" style="float:left">@Model.Category</a>
-        @if (User.Identity.IsAuthenticated && User.FindFirst(ClaimTypes.Role).Value == "Daily")
+        @if (User.Identity.IsAuthenticated && User.FindAll(ClaimTypes.Role).Where(c=>c.Value == "DAILY_MOD").Count() > 0)
         {
             <form asp-controller="Daily" asp-action="Delete" method="Post" role="form">
                 <div>
@@ -24,7 +24,7 @@
             <p class="text-muted card-subtitle" style="font-size:12px">@Model.Start - @Model.End</p>
         }
         <pre style="white-space: pre-wrap">@Model.Message</pre>
-        @if (User.Identity.IsAuthenticated && User.FindFirst(ClaimTypes.Role).Value == "Daily")
+        @if (User.Identity.IsAuthenticated && User.FindAll(ClaimTypes.Role).Where(c => c.Value == "DAILY_MOD").Count() > 0)
         {
             <a class="card-link text-dark" asp-controller="Daily" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
         }

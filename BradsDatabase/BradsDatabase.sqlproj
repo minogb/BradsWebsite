@@ -58,6 +58,7 @@
     <Folder Include="Properties" />
     <Folder Include="Post" />
     <Folder Include="Pyramid" />
+    <Folder Include="PostBuildScripts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="User.sql" />
@@ -80,6 +81,12 @@
     <Build Include="CreateDailyMessage.sql" />
     <Build Include="DeleteDailyMessage.sql" />
     <Build Include="EditDailyMessage.sql" />
+    <Build Include="UserRole.sql" />
+    <Build Include="RoleType.sql" />
+    <Build Include="RoleLevel.sql" />
+    <PostDeploy Include="PostBuildScripts\DefaultRoleValues.sql" />
+    <Build Include="RoleView.sql" />
+    <Build Include="GetUserRoles.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BradsDatabase.refactorlog" />
